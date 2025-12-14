@@ -3,10 +3,6 @@ version: 0.2
 env:
   variables:
     TF_VERSION: "1.8.5"
-  # S3 backend values (optional, if using remote backend)
-  # TF_BUCKET: "terraform-state-bucket"
-  # TF_KEY: "vpc/terraform.tfstate"
-  # TF_REGION: "ap-south-1"
 
 phases:
   install:
@@ -22,6 +18,10 @@ phases:
       - echo "Initializing Terraform..."
       - cd terraform
       - terraform init
+      - echo "Formatting Terraform files..."
+      - terraform fmt -recursive
+      - echo "Checking Terraform formatting..."
+      - terraform fmt -check -recursive
 
   build:
     commands:

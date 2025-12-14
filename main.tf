@@ -16,6 +16,10 @@ resource "aws_instance" "example" {
   instance_type = "t3.micro"
   key_name      = "linuxkp"
 
+  vpc_security_group_ids = [
+    "sg-07862ec3d9b439e15"
+  ]
+
   user_data = <<-EOF
               #!/bin/bash
               yum update -y
